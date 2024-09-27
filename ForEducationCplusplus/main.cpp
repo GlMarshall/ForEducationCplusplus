@@ -14,8 +14,8 @@ int main() {
 void TestFunc()
 {
 	string inputParam = "10001011";
-	string outputResult = binaryToOcatl(inputParam);
-	string expectedParam = "213";
+	string outputResult = binaryToHex(inputParam);
+	string expectedParam = "8B";
 
 	bool result = outputResult == expectedParam;
 

@@ -7,9 +7,10 @@ using namespace std;
 constexpr int MAX_BASE = 62;
 constexpr char hexValues[] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
+// Service Function Declaration
 void mySwap(char& char1, char& char2);
 void myReverseString(string& base_str);
-//vector<string> myGourpingStringByStep(string& base_str, int step);
+vector<string> myGourpingStringByStep(string& base_str, int step);
 int myPower(int base, int exponent);
 
 // DECIMAL TO ...
@@ -48,7 +49,6 @@ string decimalToHex(int num)
 	if (num == 0)
 		return to_string(0);
 
-	//char hexValues[] = "0123456789ABCDEF";
 	string result = "";
 
 	while (num > 0) {
@@ -96,8 +96,8 @@ string binaryToOcatl(string binary)
 	string result = "";
 
 	for (int i = 0; i < groupedBinStr.size(); i++) {
-		string converVaectorItem = binaryToDecimal(groupedBinStr[i]);
-		result += converVaectorItem;
+		string converVectorItem = binaryToDecimal(groupedBinStr[i]);
+		result += converVectorItem;
 	}
 	return result;
 }
@@ -105,9 +105,21 @@ string binaryToOcatl(string binary)
 // TODO
 string binaryToHex(string binary)
 {
-	vector<string> groupedBinStr = myGourpingStringByStep(binary, 3);
+	vector<string> groupedBinStr = myGourpingStringByStep(binary, 4);
 	string result = "";
-	return string();
+
+	for (int i = 0; i < groupedBinStr.size(); i++) {
+		string convertBinaryNumToDecimalString = binaryToDecimal(groupedBinStr[i]);
+		int convertStringToInt = stoi(convertBinaryNumToDecimalString);
+		if (convertStringToInt <= 9) {
+			result += to_string(convertStringToInt);
+		}
+		else {
+			char hexVal = hexValues[convertStringToInt];
+			result += hexVal;
+		}
+	}
+	return result;
 }
 
 string binaryToDecimal(string binary)
