@@ -8,13 +8,16 @@ constexpr int MAX_BASE = 62;
 constexpr char hexValues[] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
 // Service Function Declaration
+// I Think... Link(Reference) variable in param is not good idea. Somewere I was wrong
 void mySwap(char& char1, char& char2);
 void myReverseString(string& base_str);
 vector<string> myGourpingStringByStep(string& base_str, int step);
 int myPower(int base, int exponent);
 
+#pragma region DECIMAL TO...
+
 // DECIMAL TO ...
-string  decimalToBinary(int num)
+string decimalToBinary(int num)
 {
 	string result = "";
 
@@ -88,6 +91,9 @@ string decimalToSixtyTwoBaseAndLess(int num, int base)
 
 	return result_str;
 }
+#pragma endregion
+
+#pragma region BINARY TO...
 
 // BINARY TO ...
 string binaryToOcatl(string binary)
@@ -102,7 +108,6 @@ string binaryToOcatl(string binary)
 	return result;
 }
 
-// TODO
 string binaryToHex(string binary)
 {
 	vector<string> groupedBinStr = myGourpingStringByStep(binary, 4);
@@ -133,6 +138,45 @@ string binaryToDecimal(string binary)
 	resultStr = to_string(result);
 	return resultStr;
 }
+#pragma endregion
+
+#pragma region OCTAL TO...
+
+// OCTAL TO...
+string octalToDecimal(string octalNum)
+{
+	return string();
+}
+
+string octalToBinary(string octalNum)
+{
+	int i = 0;
+	string result = "";
+
+	while (i < octalNum.size()) {
+		char charSymb = octalNum[i];
+		size_t decRank = atoi(&charSymb);
+		string binaryRepresentation = decimalToBinary(decRank);
+
+		// min 0's have't considered
+		/*if (binaryRepresentation.size() % 3 != 0) {
+			binaryRepresentation.insert(binaryRepresentation.begin(), '0');
+		}*/
+		result += binaryRepresentation;
+		i++;
+	}
+
+	return result;
+}
+
+string octalToHex(string octalNum)
+{
+	return string();
+}
+
+#pragma endregion
+
+#pragma region Service
 
 // Service Functions
 void  mySwap(char& char1, char& char2) {
@@ -188,3 +232,5 @@ int myPower(int base, int exponent) {
 	}
 	return result;
 }
+
+#pragma endregion
